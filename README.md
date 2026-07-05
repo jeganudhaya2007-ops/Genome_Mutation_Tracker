@@ -1,8 +1,6 @@
 # 🧬 SARS-CoV-2 Genome Mutation Tracker
 
-A Python-based bioinformatics project that compares the Wuhan SARS-CoV-2 reference genome with a variant genome using **position-by-position nucleotide comparison** to identify sequence variations, classify mutation types, and visualize mutation density.
-
-> **Note:** This project is intended for educational purposes and demonstrates basic genome comparison techniques. It does **not** implement full biological sequence alignment.
+A Python-based bioinformatics tool that compares the Wuhan SARS-CoV-2 reference genome with a variant genome using position-by-position nucleotide comparison to identify sequence variations, classify mutation types, and visualize mutation density.
 
 ---
 
@@ -74,12 +72,12 @@ Position 29: A → T
 
 ## ⚠️ Limitations
 
-This project uses **direct position-by-position comparison** rather than a biological sequence alignment algorithm.
+This project uses a **direct position-by-position comparison** rather than a biological sequence alignment algorithm.
 
-- Corresponding positions in both genomes are assumed to represent the same biological location.
-- Insertions or deletions (indels) can shift downstream positions, causing additional mismatches after the first structural variation.
-- Genome length differences are reported as an overall length difference rather than aligned gaps.
-- Therefore, the reported mutations represent **positional differences** and should not be interpreted as results from a full sequence alignment.
+- **Positional Shifting:** The comparison assumes that corresponding positions in both genomes represent the same biological location. If an insertion or deletion (indel) occurs, downstream positions become offset, which can lead to additional mismatches being reported.
+- **Indel Handling:** Genome length differences are reported as an overall length difference and are **not** dynamically aligned or mapped as gaps within the sequences.
+- **Scope:** The reported mutations represent **positional nucleotide differences** and should not be interpreted as results from a full sequence alignment.
+
 
 ---
 
