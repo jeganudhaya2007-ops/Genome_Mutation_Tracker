@@ -1,20 +1,22 @@
 # 🧬 SARS-CoV-2 Genome Mutation Tracker
 
-A Python-based bioinformatics tool for comparing the Wuhan reference genome with SARS-CoV-2 variant genomes using **position-by-position alignment**.
+A Python-based bioinformatics project that compares the Wuhan SARS-CoV-2 reference genome with a variant genome using **position-by-position nucleotide comparison** to identify sequence variations, classify mutation types, and visualize mutation density.
+
+> **Note:** This project is intended for educational purposes and demonstrates basic genome comparison techniques. It does **not** implement full biological sequence alignment.
 
 ---
 
 ## 📊 Key Results
 
 | Metric | Value |
-|---------|-------|
+| :--- | :---: |
 | Wuhan Genome Length | **29,903 bp** |
 | Variant Genome Length | **29,740 bp** |
 | Total SNPs Identified | **21,338** |
 | Transitions | **6,896** |
 | Transversions | **14,442** |
 | Ts/Tv Ratio | **0.48** |
-| Deletions in Variant | **163 bp** |
+| Genome Length Difference | **163 bp** |
 
 ---
 
@@ -22,21 +24,30 @@ A Python-based bioinformatics tool for comparing the Wuhan reference genome with
 
 ![Mutation Density Graph](mutation_graph.png)
 
+*Figure: Mutation density across the SARS-CoV-2 genome in 1,000 bp bins.*
+
 ---
 
 ## 🧪 Methodology
 
-1. Load Wuhan and variant genomes from FASTA files.
-2. Perform position-by-position sequence comparison.
-3. Detect SNPs between the genomes.
-4. Classify mutations into **Transitions** and **Transversions**.
-5. Identify insertions/deletions based on sequence length.
-6. Generate text and CSV reports.
-7. Visualize mutation density using a lollipop graph.
+1. Load the Wuhan reference and variant genomes from FASTA files using **Biopython**.
+2. Compare both genomes position-by-position up to the length of the shorter sequence.
+3. Ignore ambiguous nucleotides (`N`).
+4. Detect nucleotide mismatches (SNPs).
+5. Classify mutations as:
+   - **Transitions:** A↔G, C↔T
+   - **Transversions:** A↔C, A↔T, G↔C, G↔T
+6. Calculate the **Transition/Transversion (Ts/Tv) ratio**.
+7. Calculate the overall genome length difference.
+8. Bin mutations into **1,000 bp** intervals.
+9. Export results as text and CSV files.
+10. Generate a mutation density graph using Matplotlib.
 
-### First 20 Mutations
+---
 
-```
+## 📋 Sample Mutations
+
+```text
 Position 2 : T → G
 Position 3 : T → A
 Position 4 : A → T
@@ -61,14 +72,36 @@ Position 29: A → T
 
 ---
 
+## ⚠️ Limitations
+
+This project uses **direct position-by-position comparison** rather than a biological sequence alignment algorithm.
+
+- Corresponding positions in both genomes are assumed to represent the same biological location.
+- Insertions or deletions (indels) can shift downstream positions, causing additional mismatches after the first structural variation.
+- Genome length differences are reported as an overall length difference rather than aligned gaps.
+- Therefore, the reported mutations represent **positional differences** and should not be interpreted as results from a full sequence alignment.
+
+---
+
+## 🚀 Future Improvements
+
+- Implement the **Needleman–Wunsch** global alignment algorithm.
+- Support gap-aware sequence comparison.
+- Compare multiple SARS-CoV-2 variants.
+- Annotate mutations by viral genes (Spike, ORF1ab, N, etc.).
+- Build an interactive web interface for genome comparison.
+
+---
+
 ## 📂 Project Structure
 
 ```text
-viral_genome_mutation_tracker/
+Genome_Mutation_Tracker/
 │
 ├── main.py
-├── mutation_graph.png
 ├── README.md
+├── mutation_graph.png
+├── requirements.txt
 │
 ├── data/
 │   ├── Wuhan.fasta
@@ -83,11 +116,22 @@ viral_genome_mutation_tracker/
 
 ## 🚀 How to Run
 
-```bash
-# Install dependencies
-pip install biopython matplotlib
+### 1. Clone the repository
 
-# Run the analysis
+```bash
+git clone https://github.com/jeganudhaya2007-ops/Genome_Mutation_Tracker.git
+cd Genome_Mutation_Tracker
+```
+
+### 2. Install dependencies
+
+```bash
+pip install biopython matplotlib
+```
+
+### 3. Run the analysis
+
+```bash
 python main.py
 ```
 
@@ -97,9 +141,9 @@ python main.py
 
 | File | Description |
 |------|-------------|
-| mutation_report.txt | Summary statistics and first 20 mutations |
-| mutation_report.csv | Complete SNP mutation list |
-| mutation_graph.png | Mutation density visualization |
+| `mutation_report.txt` | Summary statistics and sample mutations |
+| `mutation_report.csv` | Complete list of detected SNPs |
+| `mutation_graph.png` | Mutation density visualization |
 
 ---
 
@@ -108,27 +152,48 @@ python main.py
 - Python 3.13
 - Biopython
 - Matplotlib
+- Git
+- GitHub
 
 ---
 
-## 👨‍🔬 Author
+## 📚 What I Learned
 
-**Jegan Udhaya**  
-1st Year B.Tech Biotechnology Student
+This project helped me gain practical experience in:
 
-**GitHub:**  
+- Python programming
+- Bioinformatics workflows
+- FASTA sequence processing with Biopython
+- Mutation analysis
+- Scientific data visualization
+- Git and GitHub version control
+- Technical documentation
+
+---
+
+## 👨‍💻 Author
+
+**Jegan Udhaya**
+
+1st Year B.Tech Biotechnology Student  
+Bannari Amman Institute of Technology
+
+🔗 GitHub Profile:  
 https://github.com/jeganudhaya2007-ops
+
+🔗 Repository:  
+https://github.com/jeganudhaya2007-ops/Genome_Mutation_Tracker
 
 ---
 
 ## 📝 License
 
-This project is intended for educational and learning purposes only.
+This project is intended for educational and portfolio purposes.
 
 ---
 
 ## ⭐ Support
 
-If you found this project useful, consider giving it a ⭐ on GitHub!
+If you found this project useful, consider giving it a ⭐ on GitHub.
 
-Thank you for visiting this repository.
+Feedback and suggestions are always welcome!
