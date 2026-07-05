@@ -147,6 +147,7 @@ if snp_count > 0:
     plt.grid(True, alpha=0.3)  # Light grid for readability
     
     print("\n Displaying graph... (Close the graph window to end program)")
+    plt.savefig("mutation_graph.png", dpi=300, bbox_inches='tight')
     plt.show()
 else:
     print("\n No mutations found, so no graph was generated.")
